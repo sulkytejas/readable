@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css?family=Slabo+27px');
+@import url('https://fonts.googleapis.com/css?family=Germania+One|Slabo+27px');
+
+body{
+    background-color: white;
+}
+
+.App {
+  font-family: 'Slabo 27px', serif;
+  width: 1200px;
+  margin: auto;
+}
+
+.App .navigation{
+  padding: 20px 50px;
+  text-align: center;
+}
+
+.App .navigation .logo{
+  font-family: 'Germania One', cursive;
+  font-size: 35px;
+  display: inline-block;
+}
+
+.App .navigation .add-post {
+  float: right;
+  border: 1px #dadada solid;
+  background-color: white;
+  padding: 10px 13px;
+  font-size: 15px;
+  border-radius: 22px;
+}
+
+.App .navigation .add-post:hover {
+  background-color: black;
+  color: white;
+}
+
+.App .categories .title {
+  border-bottom: 1px #dadada solid;
+}
+
+.App .categories .title h1{
+  padding-bottom: 20px;
+  border-bottom: 1px #000000 solid;
+  display: inline-block;
+  margin-bottom: 0px;
+}
+
+.App .categories .posts{
+  margin-top: 20px;
+  padding: 10px 20px;
+  border: 1px solid #dadada;
+}
+
+.App .categories .posts h1{
+  font-size: 20px;
+}
+
+.App .categories .posts .description{
+  color: #a9a9a9;
+  padding-bottom: 5px;
+  font-size: 18px;
+}
+
+.App .categories .posts .date{
+  color: #a9a9a9;
+
+}
+
+.modal {
+  font-family: 'Slabo 27px', serif;
+  position: absolute;
+  top: 40px;
+  left: 200px;
+  right: 200px;
+  bottom: 40px;
+  border: 1px solid rgb(204, 204, 204);
+  background: rgb(255, 255, 255);
+  overflow: auto;
+  border-radius: 4px;
+  outline: none;
+  padding: 20px;
+  border-radius: 3px;
+  box-shadow: 0 3px 8px 0 rgba(0,0,0,.24), 0 3px 12px 0 rgba(0,0,0,.12);
+  min-width: 400px;
+}
+
+.modal h1{
+  text-align: center;
+}
+
+.modal input{
+  padding: 15px 0px;
+  width: 100%;
+  margin-left: 10px;
+  text-align: center;
+  font-size: 15px;
+}
+
+.modal .close {
+  margin-top: 20px;
+  border: 1px #dadada solid;
+  background-color: black;
+  color:white;
+  padding: 10px 13px;
+  font-size: 15px;
+  border-radius: 22px;
+}
