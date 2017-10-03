@@ -5,11 +5,13 @@ import '../App.css';
 class App extends Component {
   state={
     openModal: false,
+    categories:[],
   }
 
   componentDidMount(){
   fetch("http://localhost:3001/categories", {method:'GET', headers: {'Authorization': 'test','Accept':'application/json'} })
   .then(data => { return data.json()})
+  .then(res=> {return this.setState({categories:res})})
   }
 
   openFormModal = ()=>{
@@ -20,6 +22,8 @@ class App extends Component {
    this.setState(()=>({openModal: false}));
   }
   render() {
+    const {categories} = this.state
+    console.log(categories)
     return (
       <div className="App">
         <div className="container">
@@ -30,7 +34,7 @@ class App extends Component {
             </button>
           </div>
           <div class="categories">
-            <div className="title"><h1>Technology</h1></div>
+            {categories.map((category)=> (<div className="title"><h1>{category.name}</h1></div>))}
             <div className="posts">
               <h1>All the dumb things you can say about romance</h1>
               <div className="description">As you have guessed from the title I dont...</div>
