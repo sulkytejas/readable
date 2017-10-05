@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
+import Posts from './posts'
+import Category from './category'
+import { getCategories } from '../utils/api'
 import Modal from 'react-modal';
 import '../App.css';
+
 
 class App extends Component {
   state={
@@ -9,9 +13,7 @@ class App extends Component {
   }
 
   componentDidMount(){
-  fetch("http://localhost:3001/categories", {method:'GET', headers: {'Authorization': 'test','Accept':'application/json'} })
-  .then(data => { return data.json()})
-  .then(res=> {return this.setState({categories:res})})
+    getCategories().then(res=> {return this.setState({categories:res.categories})})
   }
 
   openFormModal = ()=>{
@@ -33,16 +35,9 @@ class App extends Component {
               Add post
             </button>
           </div>
-          <div class="categories">
-            {categories.map((category)=> (<div className="title"><h1>{category.name}</h1></div>))}
-            <div className="posts">
-              <h1>All the dumb things you can say about romance</h1>
-              <div className="description">As you have guessed from the title I dont...</div>
-              <div className="authour">Ron Hogan</div>
-              <div className="date">Sep 26</div>
-            </div>
-          </div>
+          <Category categories={categories}/>
         </div>
+        {/* Modal for Add post */}
         <Modal
           isOpen = {this.state.openModal}
           onRequestClose = {()=>this.closeFormModal()}
@@ -67,13 +62,27 @@ class App extends Component {
              placeholder='Description'
              ref={(input) => this.input = input}
               />
-              <h2>Body</h2>
+              <h2>Author</h2>
+              <input
+                className='form-author'
+                type='text'
+                placeholder='Author'
+                ref={(input) => this.input = input}
+              />
+            <h2>Body</h2>
             <input
               className='form-body'
               type='text'
               placeholder='Body'
               ref={(input) => this.input = input}
               />
+            <h2>category</h2>
+            <select>
+              {categories.map((category)=> (
+                <option key={category.name} value={category.name}>{category.name}</option>
+              ))
+            }
+          </select>
             <button className="close" onClick={()=>this.closeFormModal()}>Close</button>
           </form>
 
