@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Posts from './posts'
 import Category from './category'
-import { getCategories } from '../utils/api'
+import { getCategories,getAllPosts,getPost,sendPost } from '../utils/api'
 import Modal from 'react-modal';
 import '../App.css';
 
@@ -13,7 +13,8 @@ class App extends Component {
   }
 
   componentDidMount(){
-    getCategories().then(res=> {return this.setState({categories:res.categories})})
+     getCategories().then(res=> {return this.setState({categories:res.categories})})
+    // getPost('react').then(res=> {return this.setState({allPost:res})})
   }
 
   openFormModal = ()=>{
@@ -25,12 +26,11 @@ class App extends Component {
   }
   render() {
     const {categories} = this.state
-    console.log(categories)
     return (
       <div className="App">
         <div className="container">
-          <div class="navigation">
-            <div class="logo">Readable</div>
+          <div className="navigation">
+            <div className="logo">Readable</div>
             <button onClick={()=>this.openFormModal()} className="add-post">
               Add post
             </button>

@@ -7,7 +7,7 @@ class Category extends Component{
       return(
       <div>
         {categories.map((category)=> (
-        <div class="categories" key={category.name}>
+        <div className="categories" key={category.name}>
           <div className="title" ><h1>{category.name}</h1></div>
           <Posts/>
         </div>
