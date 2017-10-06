@@ -7,11 +7,12 @@ const InitialState =  {
 }
 
 function postState(state=InitialState,action){
-  const {data} = action
+  const {posts} = action
   switch (action.type) {
 
     case ADD_ALL_POSTS:
-      return {...state,getPosts:'data'}
+    console.log({posts})
+      return {...state,getPosts:posts}
 
     default:
       return state

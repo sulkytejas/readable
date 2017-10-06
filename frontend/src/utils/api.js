@@ -7,7 +7,10 @@ export function getCategories(){
 // Fetch Post
 export function getAllPosts(){
   return fetch("http://localhost:3001/posts",{method:'GET',headers:{'Authorization':'test','Accept':'application/json'}})
-  .then(data => { return data.json()})
+    .then(data => data.json()).then(res => {
+      console.log({ res });
+      return res;
+    })
 }
 
 export function getPost(category){

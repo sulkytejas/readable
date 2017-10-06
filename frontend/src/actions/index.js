@@ -5,10 +5,13 @@ export const ADD_POSTS = 'ADD_POSTS'
 export const DELETE_POSTS = 'DELETE_POSTS'
 
 
-export const addAllPostsActions = posts =>({
-  type: ADD_ALL_POSTS,
-  posts
-});
+export const addAllPostsActions = posts =>{
+  console.log({ posts });
+  return {
+    type: ADD_ALL_POSTS,
+    posts
+  }
+};
 
 export function addPosts({id,timestamp,title,body,author,category}){
   return {
@@ -32,6 +35,7 @@ export function deletePosts({id,deleted}){
 
 export const  fetchData = () => dispatch => (
   APIUtil
-  .getAllPosts
+  .getAllPosts()
   .then(data =>dispatch(addAllPostsActions(data)))
+  .catch(err => console.log(err))
 )

@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import Posts from './posts'
 import Category from './category'
 import { getCategories,getAllPosts,getPost,sendPost } from '../utils/api'
-import { fetchData } from '../actions/'
+import { addAllPostsActions } from '../actions/'
 import Modal from 'react-modal';
 import '../App.css';
 
@@ -19,7 +19,7 @@ class App extends Component {
     getCategories().then(res=> {return this.setState({categories:res.categories})})
     //  sendPost().then(res=> {return this.setState({allPost:res})})
     // this.props.ItemsfetchData("http://localhost:3001/posts",{method:'GET',headers:{'Authorization':'test','Accept':'application/json'}})
-  console.log(this.props.ItemsfetchData)
+   this.props.itemFetchPost()
   }
 
   openFormModal = ()=>{
@@ -103,7 +103,7 @@ const mapStateToProps = (postState) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    itemFetchPost: (data) => dispatch(fetchData(data))
+    itemFetchPost: (data) => dispatch(addAllPostsActions(data))
   }
 }
 
