@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import {ADD_ALL_POSTS,ADD_POSTS,DELETE_POSTS,getAllPosts} from '../actions'
+import {ADD_ALL_POSTS,ADD_POSTS,DELETE_POSTS} from '../actions'
 
 
 const InitialState =  {
@@ -7,12 +7,11 @@ const InitialState =  {
 }
 
 function postState(state=InitialState,action){
-  const {posts} = action
+  const {data} = action
   switch (action.type) {
 
     case ADD_ALL_POSTS:
-      return {...state,getPosts:posts}
-
+      return {...state,getPosts:'data'}
 
     default:
       return state

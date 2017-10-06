@@ -5,7 +5,7 @@ export const ADD_POSTS = 'ADD_POSTS'
 export const DELETE_POSTS = 'DELETE_POSTS'
 
 
-export const addAllPosts = posts =>({
+export const addAllPostsActions = posts =>({
   type: ADD_ALL_POSTS,
   posts
 });
@@ -33,5 +33,5 @@ export function deletePosts({id,deleted}){
 export const  fetchData = () => dispatch => (
   APIUtil
   .getAllPosts
-  .then((data)=>dispatch(addAllPosts(data)))
-);
+  .then(data =>dispatch(addAllPostsActions(data)))
+)

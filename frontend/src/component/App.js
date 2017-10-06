@@ -19,6 +19,7 @@ class App extends Component {
     getCategories().then(res=> {return this.setState({categories:res.categories})})
     //  sendPost().then(res=> {return this.setState({allPost:res})})
     // this.props.ItemsfetchData("http://localhost:3001/posts",{method:'GET',headers:{'Authorization':'test','Accept':'application/json'}})
+  console.log(this.props.ItemsfetchData)
   }
 
   openFormModal = ()=>{
@@ -96,15 +97,13 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    posts: state.posts
-  }
+const mapStateToProps = (postState) => {
+  return postState
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    ItemsfetchData: (url) => dispatch(fetchData(url))
+    itemFetchPost: (data) => dispatch(fetchData(data))
   }
 }
 
