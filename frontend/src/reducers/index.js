@@ -3,7 +3,7 @@ import {ADD_ALL_POSTS,ADD_POSTS,DELETE_POSTS,getAllPosts} from '../actions'
 
 
 const InitialState =  {
-  getPosts: []
+  getPosts: 'null'
 }
 
 function postState(state=InitialState,action){
@@ -11,7 +11,7 @@ function postState(state=InitialState,action){
   switch (action.type) {
 
     case ADD_ALL_POSTS:
-      return Object.assign(state,state,{getPosts:'test'})
+      return {...state,getPosts:posts}
 
 
     default:
