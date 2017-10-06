@@ -1,22 +1,23 @@
 import { combineReducers } from 'redux'
-import {ADD_ALL_POSTS,ADD_POSTS,DELETE_POSTS} from '../actions'
-import { getAllPosts } from '../utils/api'
+import {ADD_ALL_POSTS,ADD_POSTS,DELETE_POSTS,getAllPosts} from '../actions'
+
 
 const InitialState =  {
-  getPosts:[]
+  getPosts: []
 }
 
-function post(state=InitialState,action){
+function postState(state=InitialState,action){
+  const {posts} = action
   switch (action.type) {
+
     case ADD_ALL_POSTS:
-      return{
-        getAllPosts()
-        .then(res=> {return this.setState({allPosts:res})})
-      }
+      return Object.assign(state,state,{getPosts:'test'})
+
+
     default:
       return state
 
   }
 }
 
-export default combineReducers({ })
+export default combineReducers({postState})

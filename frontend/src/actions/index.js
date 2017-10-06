@@ -1,12 +1,14 @@
+import * as APIUtil from '../utils/api';
+
 export const ADD_ALL_POSTS = 'ADD_ALL_POSTS'
 export const ADD_POSTS = 'ADD_POSTS'
 export const DELETE_POSTS = 'DELETE_POSTS'
 
-export function addAllPosts(){
-  return {
-    type: ADD_ALL_POSTS,
-  }
-}
+
+export const addAllPosts = posts =>({
+  type: ADD_ALL_POSTS,
+  posts
+});
 
 export function addPosts({id,timestamp,title,body,author,category}){
   return {
@@ -27,3 +29,9 @@ export function deletePosts({id,deleted}){
     deleted
   }
 }
+
+export const  fetchData = () => dispatch => (
+  APIUtil
+  .getAllPosts
+  .then((data)=>dispatch(addAllPosts(data)))
+);

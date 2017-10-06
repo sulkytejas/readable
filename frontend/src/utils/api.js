@@ -18,7 +18,7 @@ export function getPost(category){
 export function sendPost(){
   return fetch("http://localhost:3001/posts",
   {method:'Post',
-  headers:{'Authorization':'test','Accept':'application/json'},
+  headers:{'Authorization':'test','Accept':'application/json','Content-Type': 'application/json'},
   body: JSON.stringify({
     id:1,
     timestamp:Date.now(),
