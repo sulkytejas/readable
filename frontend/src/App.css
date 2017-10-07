@@ -107,3 +107,12 @@ body{
   font-size: 15px;
   border-radius: 22px;
 }
+.posts .close {
+  margin-top: 20px;
+  border: 1px #dadada solid;
+  background-color: black;
+  color:white;
+  padding: 10px 13px;
+  font-size: 15px;
+  border-radius: 22px;
+}

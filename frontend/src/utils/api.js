@@ -1,3 +1,7 @@
+import dateFormat from 'dateformat'
+
+const now = new Date();
+const header = {'Authorization':'test','Accept':'application/json','Content-Type': 'application/json'}
 //Fetch all the categories
 export function getCategories(){
   return fetch("http://localhost:3001/categories", {method:'GET', headers: {'Authorization': 'test','Accept':'application/json'} })
@@ -6,7 +10,7 @@ export function getCategories(){
 
 // Fetch Post
 export function getAllPosts(){
-  return fetch("http://localhost:3001/posts",{method:'GET',headers:{'Authorization':'test','Accept':'application/json'}})
+  return fetch("http://localhost:3001/posts",{method:'GET',headers:header})
     .then(data => data.json()).then(res => {
       return res;
     })
@@ -17,17 +21,30 @@ export function getPost(category){
   .then(data => { return data.json()})
 }
 
-export function sendPost(){
+export function sendPost(title,body,category,author){
   return fetch("http://localhost:3001/posts",
   {method:'Post',
-  headers:{'Authorization':'test','Accept':'application/json','Content-Type': 'application/json'},
+  headers:header,
   body: JSON.stringify({
-    id:1,
-    timestamp:Date.now(),
-    title:'test',
-    body:'test1',
-    category:'redux'
+    id:Math.floor((Math.random() * 100) + 1),
+    timestamp:dateFormat(now, "dddd, mmmm dS, yyyy, h:MM:ss TT"),
+    title:title,
+    body:body,
+    author: author,
+    category:category,
   })
   })
   .then(data => { return data.json()})
+}
+
+export function deletePost(id=2){
+  return fetch("http://localhost:3001/:"+id,
+  {method:'GET',
+  headers:header,
+  body: JSON.stringify({
+    deleted:true,
+  })
+})
+  .then(data => { return data.json()})
+
 }

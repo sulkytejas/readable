@@ -1,13 +1,25 @@
 import React, { Component } from 'react';
 
 class Posts extends Component{
+    handleRequest=(id)=>{
+      this.props.DeletePost(id)
+    }
     render(){
+      const posts = this.props.posts
+
       return(
-        <div className="posts">
-          <h1>All the dumb things you can say about romance</h1>
-          <div className="description">As you have guessed from the title I dont...</div>
-          <div className="authour">Ron Hogan</div>
-          <div className="date">Sep 26</div>
+        <div>
+          {posts.map(post=>(
+            <div className="posts" key={post.id}>
+              <h1>{post.title}</h1>
+              <div className="description">{post.body}</div>
+              <div className="authour">{post.author}</div>
+              <div className="date">{post.timestamp}</div>
+              <div><button className="close" onClick={(post.id)=>this.handleRequest}>Delete</button></div>
+            </div>
+
+          ))}
+
         </div>
       )
     }

@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import Posts from './posts'
 import Category from './category'
 import { getCategories,getAllPosts,getPost,sendPost } from '../utils/api'
-import { fetchData } from '../actions/'
+import { fetchData,SendPost,DeletePost } from '../actions/'
 import Modal from 'react-modal';
 import '../App.css';
 
@@ -12,6 +12,10 @@ class App extends Component {
   state={
     openModal: false,
     categories:[],
+    body:'',
+    category:'',
+    title:'',
+    author:'',
   }
 
   componentDidMount(){
@@ -27,9 +31,8 @@ class App extends Component {
    this.setState(()=>({openModal: false}));
   }
   render() {
-    const {categories} = this.state
-    const {posts} = this.props
-    console.log(posts)
+    const {categories,title,body,category,author} = this.state
+    const posts = this.props.posts
     return (
       <div className="App">
         <div className="container">
@@ -39,20 +42,7 @@ class App extends Component {
               Add post
             </button>
           </div>
-          {categories.map((category)=> (
-          <div className="categories" key={category.name}>
-            <div className="title" ><h1>{category.name}</h1></div>
-            {posts.map((post)=>(<div>{post.title}</div>))}
-            <div className="posts">
-              <h1>All the dumb things you can say about romance</h1>
-              <div className="description">As you have guessed from the title I dont...</div>
-              <div className="authour">Ron Hogan</div>
-              <div className="date">Sep 26</div>
-            </div>
-          </div>
-          ))
-        }
-          {/* <Category categories={categories} posts={posts}/> */}
+          <Category categories={categories} posts={posts} deletePost={(id)=>(this.props.itemDeletePost(id))}/>
         </div>
         {/* Modal for Add post */}
         <Modal
@@ -70,37 +60,46 @@ class App extends Component {
               className='form-title'
               type='text'
               placeholder='Enter Title'
+              onChange = {(e)=> this.setState({title:e.target.value})}
               ref={(input) => this.input = input}
-              />
-            <h2>Description</h2>
-            <input
-             className='form-description'
-             type='text'
-             placeholder='Description'
-             ref={(input) => this.input = input}
               />
               <h2>Author</h2>
               <input
                 className='form-author'
                 type='text'
                 placeholder='Author'
+                onChange = {(e)=> this.setState({author:e.target.value})}
                 ref={(input) => this.input = input}
               />
-            <h2>Body</h2>
+            <h2>Body(Description)</h2>
             <input
               className='form-body'
               type='text'
               placeholder='Body'
+              onChange = {(e)=> this.setState({body:e.target.value})}
               ref={(input) => this.input = input}
               />
             <h2>category</h2>
-            <select>
+            <select onChange = {(e)=> this.setState({category:e.target.value})}>
               {categories.map((category)=> (
-                <option key={category.name} value={category.name}>{category.name}</option>
+                <option
+                  key={category.name}
+                  value={category.name}>
+                    {category.name}
+                  </option>
               ))
             }
           </select>
-            <button className="close" onClick={()=>this.closeFormModal()}>Close</button>
+            <button
+              className="close"
+              onClick={()=>this.closeFormModal()}>
+              Close
+            </button>
+            <button
+              className="close"
+              onClick={()=>this.props.itemSendPost(title,body,category,author)}>
+              Submit
+            </button>
           </form>
 
         </Modal>
@@ -113,7 +112,9 @@ const mapStateToProps = ({ postState }) => ({ posts: postState})
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    itemFetchPost: (data) => dispatch(fetchData(data))
+    itemFetchPost: (data) => dispatch(fetchData(data)),
+    itemSendPost: (title,body,category,author) => dispatch(SendPost(title,body,category,author)),
+    itemDeletePost: (id) => dispatch(DeletePost(id))
   }
 }
 
