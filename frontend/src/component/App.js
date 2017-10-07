@@ -16,7 +16,7 @@ class App extends Component {
 
   componentDidMount(){
     getCategories().then(res=> {return this.setState({categories:res.categories})})
-     this.props.itemFetchPost()
+    this.props.itemFetchPost()
   }
 
   openFormModal = ()=>{
@@ -29,6 +29,7 @@ class App extends Component {
   render() {
     const {categories} = this.state
     const {posts} = this.props
+    console.log(posts)
     return (
       <div className="App">
         <div className="container">
@@ -40,8 +41,8 @@ class App extends Component {
           </div>
           {categories.map((category)=> (
           <div className="categories" key={category.name}>
-
             <div className="title" ><h1>{category.name}</h1></div>
+            {posts.map((post)=>(<div>{post.title}</div>))}
             <div className="posts">
               <h1>All the dumb things you can say about romance</h1>
               <div className="description">As you have guessed from the title I dont...</div>
