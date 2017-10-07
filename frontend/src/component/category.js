@@ -9,7 +9,7 @@ class Category extends Component{
         {categories.map((category)=> (
         <div className="categories" key={category.name}>
           <div className="title" ><h1>{category.name}</h1></div>
-          <Posts/>
+          <Posts posts={this.props.posts} />
         </div>
         ))
       }

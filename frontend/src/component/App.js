@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import Posts from './posts'
 import Category from './category'
 import { getCategories,getAllPosts,getPost,sendPost } from '../utils/api'
-import { addAllPostsActions } from '../actions/'
+import { fetchData } from '../actions/'
 import Modal from 'react-modal';
 import '../App.css';
 
@@ -12,14 +12,11 @@ class App extends Component {
   state={
     openModal: false,
     categories:[],
-    Post:[],
   }
 
   componentDidMount(){
     getCategories().then(res=> {return this.setState({categories:res.categories})})
-    //  sendPost().then(res=> {return this.setState({allPost:res})})
-    // this.props.ItemsfetchData("http://localhost:3001/posts",{method:'GET',headers:{'Authorization':'test','Accept':'application/json'}})
-   this.props.itemFetchPost()
+     this.props.itemFetchPost()
   }
 
   openFormModal = ()=>{
@@ -31,6 +28,7 @@ class App extends Component {
   }
   render() {
     const {categories} = this.state
+    const {posts} = this.props
     return (
       <div className="App">
         <div className="container">
@@ -40,7 +38,20 @@ class App extends Component {
               Add post
             </button>
           </div>
-          <Category categories={categories}/>
+          {categories.map((category)=> (
+          <div className="categories" key={category.name}>
+
+            <div className="title" ><h1>{category.name}</h1></div>
+            <div className="posts">
+              <h1>All the dumb things you can say about romance</h1>
+              <div className="description">As you have guessed from the title I dont...</div>
+              <div className="authour">Ron Hogan</div>
+              <div className="date">Sep 26</div>
+            </div>
+          </div>
+          ))
+        }
+          {/* <Category categories={categories} posts={posts}/> */}
         </div>
         {/* Modal for Add post */}
         <Modal
@@ -97,13 +108,11 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = (postState) => {
-  return postState
-}
+const mapStateToProps = ({ postState }) => ({ posts: postState})
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    itemFetchPost: (data) => dispatch(addAllPostsActions(data))
+    itemFetchPost: (data) => dispatch(fetchData(data))
   }
 }
 

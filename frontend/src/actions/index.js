@@ -36,6 +36,6 @@ export function deletePosts({id,deleted}){
 export const  fetchData = () => dispatch => (
   APIUtil
   .getAllPosts()
-  .then(data =>dispatch(addAllPostsActions(data)))
-  .catch(err => console.log(err))
+  .then(data =>(dispatch(addAllPostsActions(data))))
+  .catch(err => (console.log(err)))
 )
