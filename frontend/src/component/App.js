@@ -42,7 +42,7 @@ class App extends Component {
               Add post
             </button>
           </div>
-          <Category categories={categories} posts={posts} deletePost={(id)=>(this.props.itemDeletePost(id))}/>
+          <Category categories={categories} posts={posts} deletepost={(id)=>(this.props.itemDeletePost(id))}/>
         </div>
         {/* Modal for Add post */}
         <Modal
@@ -81,6 +81,7 @@ class App extends Component {
               />
             <h2>category</h2>
             <select onChange = {(e)=> this.setState({category:e.target.value})}>
+              <option value="none">None</option>
               {categories.map((category)=> (
                 <option
                   key={category.name}

@@ -2,6 +2,7 @@ import dateFormat from 'dateformat'
 
 const now = new Date();
 const header = {'Authorization':'test','Accept':'application/json','Content-Type': 'application/json'}
+const apiUrl = "http://localhost:3001"
 //Fetch all the categories
 export function getCategories(){
   return fetch("http://localhost:3001/categories", {method:'GET', headers: {'Authorization': 'test','Accept':'application/json'} })
@@ -37,13 +38,11 @@ export function sendPost(title,body,category,author){
   .then(data => { return data.json()})
 }
 
-export function deletePost(id=2){
-  return fetch("http://localhost:3001/:"+id,
-  {method:'GET',
-  headers:header,
-  body: JSON.stringify({
-    deleted:true,
-  })
+export function deletePost(id){
+  return fetch("http://localhost:3001/posts/:"+id,
+  {
+    method:'DELETE',
+    headers:header,
 })
   .then(data => { return data.json()})
 
