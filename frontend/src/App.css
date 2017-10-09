@@ -38,6 +38,7 @@ body{
 
 .App .categories .title {
   border-bottom: 1px #dadada solid;
+  display: block;
 }
 
 .App .categories .title h1{

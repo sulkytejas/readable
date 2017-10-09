@@ -39,10 +39,10 @@ export function sendPost(title,body,category,author){
 }
 
 export function deletePost(id){
-  return fetch("http://localhost:3001/posts/:"+id,
+  return fetch("http://localhost:3001/posts/"+id,
   {
     method:'DELETE',
-    headers:header,
+    headers: {'Authorization': 'test'} ,
 })
   .then(data => { return data.json()})
 
