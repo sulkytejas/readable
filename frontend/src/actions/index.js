@@ -12,11 +12,10 @@ export const addAllPostsActions = posts =>{
   }
 };
 
-export function deletePosts({id,deleted}){
+export function deletePosts({posts}){
   return{
     type: DELETE_POSTS,
-    id,
-    deleted
+    posts
   }
 }
 
@@ -37,6 +36,6 @@ export const SendPost = (title,body,category,author)=> dispatch =>(
 export const DeletePost = (id)=> dispatch =>(
   APIUtil
   .deletePost(id)
-  .then(data => (console.log(data)))
+  .then(data =>(dispatch(deletePosts(data))))
   .catch(err => (console.log(err)))
 )

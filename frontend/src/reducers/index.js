@@ -9,6 +9,8 @@ function postState(state=InitialState,action){
   switch (action.type) {
     case ADD_ALL_POSTS:
       return posts;
+      case DELETE_POSTS:
+        return posts;
     default:
       return state
 

@@ -11,22 +11,14 @@ import '../App.css';
 
 
 class App extends Component {
-  state={
-    categories:[],
-  }
-
-  componentDidMount(){
-    getCategories().then(res=> {return this.setState({categories:res.categories})})
-  }
+  state={}
 
   render() {
     const {categories} = this.state
     return (
       <div className="App">
         <Route exact path="/" component={Category}/>
-        {categories.map((category)=>(
-          <Route exact path={category.path} component={SingleCategory}/>
-        ))}
+       <Route exact path="/:category" component={SingleCategory}/>
 
       </div>
     );
