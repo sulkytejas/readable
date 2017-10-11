@@ -17,11 +17,6 @@ export function getAllPosts(){
     })
 }
 
-export function getPost(category){
-  return fetch("http://localhost:3001/:"+category+"/posts",{method:'GET',headers:{'Authorization':'test','Accept':'application/json'}})
-  .then(data => { return data.json()})
-}
-
 export function sendPost(title,body,category,author){
   return fetch("http://localhost:3001/posts",
   {method:'Post',
@@ -45,5 +40,38 @@ export function deletePost(id){
     headers: {'Authorization': 'test'} ,
 })
   .then(data => { return data.json()})
+}
 
+export function fetchSinglePost(id){
+  return fetch("http://localhost:3001/posts/"+id,
+  {
+    method:'GET',
+    headers: header ,
+})
+  .then(data => { return data.json()})
+}
+
+export function getComments(id){
+  return fetch("http://localhost:3001/posts/"+id+"/comments",
+  {
+    method:'GET',
+    headers: header ,
+})
+  .then(data => { return data.json()})
+}
+
+export function postComments(author,body,postID){
+  return fetch ("http://localhost:3001/comments",
+  {
+    method:'Post',
+    headers:header,
+    body: JSON.stringify({
+      id:Math.floor((Math.random() * 100) + 1),
+      timestamp:dateFormat(now, "dddd, mmmm dS, yyyy, h:MM:ss TT"),
+      body:body,
+      author:author,
+      parentId:postID
+    })
+  }
+).then(data => { return data.json()})
 }

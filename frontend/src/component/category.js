@@ -4,7 +4,7 @@ import Posts from './posts'
 import{Link} from 'react-router-dom'
 import SingleCategory from './singleCategory'
 import { getCategories,getAllPosts,getPost,sendPost } from '../utils/api'
-import { fetchData,SendPost,DeletePost } from '../actions/'
+import { fetchData,SendPost,DeletePost,fetchSinglePost } from '../actions/'
 import Modal from 'react-modal';
 import '../App.css';
 
@@ -38,7 +38,7 @@ class Category extends Component {
       <div className="Category">
         <div className="container">
           <div className="navigation">
-            <div className="logo">Readable</div>
+            {/* <div className="logo">Readable</div> */}
             <button onClick={()=>this.openFormModal()} className="add-post">
               Add post
             </button>
@@ -47,8 +47,8 @@ class Category extends Component {
           <div className="categories" key={category.name}>
             <Link to={category.path}  className="title" ><h1>{category.name}</h1></Link>
             <Posts
-              posts={posts.filter((a)=> a.category === category.name && a.deleted === false)}
-              deletepost={(id)=>(this.props.itemDeletePost(id))}/>
+              posts={posts.filter((a)=> a.category === category.name)}
+              deletepost={(id)=>(this.props.itemDeletePost(id))} />
           </div>
           ))
         }
@@ -125,7 +125,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     itemFetchPost: (data) => dispatch(fetchData(data)),
     itemSendPost: (title,body,category,author) => dispatch(SendPost(title,body,category,author)),
-    itemDeletePost: (id) => dispatch(DeletePost(id))
+    itemDeletePost: (id) => dispatch(DeletePost(id)),
   }
 }
 

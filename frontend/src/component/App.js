@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux'
 import Posts from './posts'
 import Category from './category'
-import{Route} from 'react-router-dom'
+import{Route,Router} from 'react-router-dom'
 import SingleCategory from './singleCategory'
+import SinglePost from './singlePost'
 import { getCategories,getAllPosts,getPost,sendPost } from '../utils/api'
 import { fetchData,SendPost,DeletePost } from '../actions/'
 import Modal from 'react-modal';
@@ -17,9 +18,12 @@ class App extends Component {
     const {categories} = this.state
     return (
       <div className="App">
-        <Route exact path="/" component={Category}/>
+        <div className="navigation">
+          <div className="logo">Readable</div>
+        </div>
+       <Route exact path="/" component={Category}/>
        <Route exact path="/:category" component={SingleCategory}/>
-
+       <Route exact path="/posts/:id" component={SinglePost}/>
       </div>
     );
   }
