@@ -13,6 +13,7 @@ class SingleCategory extends Component{
     getCategories().then(res=> {return this.setState({categories:res.categories})})
     this.props.itemFetchPost()
   }
+  
     render(){
       const category = this.props.match.params.category
       const {posts} = this.props
