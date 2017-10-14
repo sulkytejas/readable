@@ -161,3 +161,34 @@ body{
   font-size: 15px;
   border-radius: 22px;
 }
+
+ .comment{
+  margin: 20px 10px;
+  padding: 10px 20px;
+  border: 1px solid #dadada;
+}
+
+.comment h1{
+  font-size: 20px;
+}
+
+ .comments .description{
+  color: #a9a9a9;
+  padding-bottom: 5px;
+  font-size: 18px;
+}
+
+.comments .date{
+  color: #a9a9a9;
+
+}
+
+.singlePost .close{
+  margin: 20px 10px;
+  border: 1px #dadada solid;
+  background-color: black;
+  color:white;
+  padding: 10px 13px;
+  font-size: 15px;
+  border-radius: 22px;
+}

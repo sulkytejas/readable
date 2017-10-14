@@ -51,6 +51,19 @@ export function fetchSinglePost(id){
   .then(data => { return data.json()})
 }
 
+export function editPost(id,title,body){
+  return fetch("http://localhost:3001/posts/"+id,
+  {
+    method:'PUT',
+    headers: header,
+    body: JSON.stringify({
+      title:title,
+      body:body,
+    })
+})
+  .then(data => { return data.json()})
+}
+
 export function getComments(id){
   return fetch("http://localhost:3001/posts/"+id+"/comments",
   {
@@ -60,18 +73,47 @@ export function getComments(id){
   .then(data => { return data.json()})
 }
 
-export function postComments(author,body,postID){
-  return fetch ("http://localhost:3001/comments",
+export function postComments(body,author,postID){
+  return fetch("http://localhost:3001/comments",
+  {method:'Post',
+  headers:header,
+  body: JSON.stringify({
+    id:Math.floor((Math.random() * 100) + 1),
+    timestamp:dateFormat(now, "dddd, mmmm dS, yyyy, h:MM:ss TT"),
+    body:body,
+    author: author,
+    parentId:postID,
+  })
+  })
+  .then(data => { return data.json()})
+}
+
+export function deleteComment(id){
+  return fetch("http://localhost:3001/comments/"+id,
   {
-    method:'Post',
-    headers:header,
+    method:'DELETE',
+    headers: {'Authorization': 'test'} ,
+})
+  .then(data => { return data.json()})
+}
+
+export function getSingleComment(id){
+  return fetch("http://localhost:3001/comments/"+id,
+  {
+    method:'GET',
+    headers: header ,
+})
+  .then(data => { return data.json()})
+}
+
+export function editComments(id,body){
+  return fetch("http://localhost:3001/comments/47",
+  {
+    method:'PUT',
+    headers: header,
     body: JSON.stringify({
-      id:Math.floor((Math.random() * 100) + 1),
-      timestamp:dateFormat(now, "dddd, mmmm dS, yyyy, h:MM:ss TT"),
-      body:body,
-      author:author,
-      parentId:postID
+      body:'body',
     })
-  }
-).then(data => { return data.json()})
+})
+  .then(data => { return data.json()})
 }
