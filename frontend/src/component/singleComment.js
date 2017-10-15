@@ -13,9 +13,12 @@ class SingleComment extends Component{
   componentDidMount(){
     const id = this.props.match.params.id
     this.props.itemAddComment(id)
+  }
+
+  componentDidUpdate() {
     if (!this.state.body) {
       this.setState({ body: this.props.comments.body });
-   }
+    }
   }
 
 

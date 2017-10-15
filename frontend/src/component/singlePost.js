@@ -15,6 +15,8 @@ class SinglePost extends Component{
     title:'',
   }
 
+
+
   openFormModal = ()=>{
    this.setState(()=>({openModal: true}));
   }
@@ -35,6 +37,15 @@ class SinglePost extends Component{
     const id = this.props.match.params.id
     this.props.itemFetchSinglePost(id)
     this.props.itemFetchComment(id)
+  }
+
+  componentDidUpdate(){
+    if (!this.state.body){
+      this.setState({body:this.props.post.body})
+    }
+    if (!this.state.title){
+      this.setState({title:this.props.post.title})
+    }
   }
 
     render(){
@@ -124,6 +135,7 @@ class SinglePost extends Component{
               <input
                 className='form-title'
                 type='text'
+                value={title}
                 placeholder='Enter Title'
                 onChange = {(e)=> this.setState({title:e.target.value})}
                 ref={(input) => this.input = input}
@@ -133,6 +145,7 @@ class SinglePost extends Component{
                 className='form-body'
                 type='text'
                 placeholder='Body'
+                value={body}
                 onChange = {(e)=> this.setState({body:e.target.value})}
                 ref={(input) => this.input = input}
                 />
