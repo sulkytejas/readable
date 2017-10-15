@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import {ADD_ALL_POSTS,DELETE_POSTS,FETCH_POST,FETCH_COMMENTS,POST_COMMENTS,DELETE_COMMENTS,GET_SINGLE_COMMENT,EDIT_POST,EDIT_COMMENT} from '../actions'
+import {ADD_ALL_POSTS,DELETE_POSTS,FETCH_POST,FETCH_COMMENTS,POST_COMMENTS,DELETE_COMMENTS,GET_SINGLE_COMMENT,EDIT_POST,EDIT_COMMENT,VOTE_POSTS,VOTE_POSTS_DOWN,VOTE_COMMENT_DOWN,VOTE_COMMENT} from '../actions'
 
 
 const InitialState =  []
@@ -29,6 +29,12 @@ function singlePostState(state=[],action){
     case EDIT_POST:
       return post;
 
+    case VOTE_POSTS:
+      return post;
+
+    case VOTE_POSTS_DOWN:
+      return post;
+
     default:
       return state
 
@@ -40,7 +46,7 @@ function commentState(state=[],action){
   switch (action.type) {
 
     case FETCH_COMMENTS:
-     return comment;
+     return comment.sort(function(a,b){ if (a.voteScore > b.voteScore) {return a} else {return b}});
 
     case POST_COMMENTS:
      return state.concat(comment);
@@ -52,7 +58,12 @@ function commentState(state=[],action){
      return comment;
 
     case EDIT_COMMENT:
-    console.log(action)
+     return comment;
+
+    case VOTE_COMMENT:
+     return comment;
+
+    case VOTE_COMMENT_DOWN:
      return comment;
 
 
@@ -60,5 +71,6 @@ function commentState(state=[],action){
       return state
   }
 }
+
 
 export default combineReducers({postState,singlePostState,commentState})

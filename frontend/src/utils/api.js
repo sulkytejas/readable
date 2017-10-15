@@ -106,14 +106,60 @@ export function getSingleComment(id){
   .then(data => { return data.json()})
 }
 
-export function editComments(id,body){
-  return fetch("http://localhost:3001/comments/47",
+export function editComment(id,body){
+  return fetch("http://localhost:3001/comments/"+id,
   {
     method:'PUT',
     headers: header,
     body: JSON.stringify({
-      body:'body',
+      body:body,
     })
 })
+  .then(data => { return data.json()})
+}
+
+//Voting
+
+export function votePost(id){
+  return fetch("http://localhost:3001/posts/"+id,
+  {method:'Post',
+  headers:header,
+  body: JSON.stringify({
+    option: "upVote"
+    })
+  })
+  .then(data => { return data.json()})
+}
+
+export function votePostDown(id){
+  return fetch("http://localhost:3001/posts/"+id,
+  {method:'Post',
+  headers:header,
+  body: JSON.stringify({
+    option: "downVote"
+    })
+  })
+  .then(data => { return data.json()})
+}
+
+export function voteComment(id){
+  return fetch("http://localhost:3001/comments/"+id,
+  {method:'Post',
+  headers:header,
+  body: JSON.stringify({
+    option: "upVote"
+    })
+  })
+  .then(data => { return data.json()})
+}
+
+export function voteCommentDown(id){
+  return fetch("http://localhost:3001/comments/"+id,
+  {method:'Post',
+  headers:header,
+  body: JSON.stringify({
+    option: "downVote"
+    })
+  })
   .then(data => { return data.json()})
 }

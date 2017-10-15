@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import Modal from 'react-modal';
-import {fetchSinglePost,AsyncfetchComments,AsyncPostComments,DeleteComment,AsycEditPost } from '../actions/'
+import {fetchSinglePost,AsyncfetchComments,AsyncPostComments,DeleteComment,AsycEditPost,AsyncVotePost,AsyncVotePostDown } from '../actions/'
 
 
 class SinglePost extends Component{
@@ -50,6 +50,9 @@ class SinglePost extends Component{
 
             <p className="category">{post.category}</p>
             <p className="time">{post.timestamp}</p>
+            <p className="vote">Score: {post.voteScore}</p>
+            <button className="close" onClick={()=>this.props.itemVotePost(id)}>Like</button>
+            <button className="close" onClick={()=>this.props.itemVotePostDown(id)}>Dislike</button>
             <button className="close" onClick={()=>this.openCommentModal()}>Edit</button>
           </div>
           <div className="comments">
@@ -161,7 +164,9 @@ const mapDispatchToProps = (dispatch) => {
     itemFetchComment: (id) => dispatch(AsyncfetchComments(id)),
     itemPostComment: (body,author,postID) => dispatch(AsyncPostComments(body,author,postID)),
     itemDeleteComment: (id) => dispatch(DeleteComment(id)),
-    itemEditPost:(id,title,body)=>dispatch(AsycEditPost(id,title,body))
+    itemEditPost:(id,title,body)=>dispatch(AsycEditPost(id,title,body)),
+    itemVotePost:(id)=>dispatch(AsyncVotePost(id)),
+    itemVotePostDown:(id)=>dispatch(AsyncVotePostDown(id))
   }
 }
 

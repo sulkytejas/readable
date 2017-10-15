@@ -10,6 +10,10 @@ export const POST_COMMENTS = 'POST_COMMENTS'
 export const DELETE_COMMENTS = 'DELETE_COMMENTS'
 export const GET_SINGLE_COMMENT = 'GET_SINGLE_COMMENT'
 export const EDIT_COMMENT = 'EDIT_COMMENT'
+export const VOTE_POSTS = 'VOTE_POSTS'
+export const VOTE_POSTS_DOWN = 'VOTE_POSTS_DOWN'
+export const VOTE_COMMENT = 'VOTE_COMMENT'
+export const VOTE_COMMENT_DOWN = 'VOTE_COMMENT_DOWN'
 
 
 export const addAllPostsActions = posts =>{
@@ -74,6 +78,35 @@ export const editComment = comment =>{
     comment
   }
 };
+
+export const votePosts = post =>{
+  return {
+    type: VOTE_POSTS,
+    post
+  }
+};
+
+export const votePostsDown = post =>{
+  return {
+    type: VOTE_POSTS_DOWN,
+    post
+  }
+};
+
+export const voteComments = comment =>{
+  return {
+    type: VOTE_COMMENT,
+    comment
+  }
+};
+
+export const voteCommentsDown = comment =>{
+  return {
+    type: VOTE_COMMENT_DOWN,
+    comment
+  }
+};
+
 
 //Async Thunk Reuqest
 
@@ -142,7 +175,35 @@ export const AsycEditPost = (id,title,body)=> dispatch =>(
 
 export const AsycEditComment = (id,body)=> dispatch =>(
   APIUtil
-  .editComments(id,body)
+  .editComment(id,body)
   .then(data =>(dispatch(editComment(data))))
+  .catch(err => (console.log(err)))
+)
+
+export const AsyncVotePost = (id)=> dispatch =>(
+  APIUtil
+  .votePost(id)
+  .then(data =>(dispatch(votePosts(data))))
+  .catch(err => (console.log(err)))
+)
+
+export const AsyncVotePostDown = (id)=> dispatch =>(
+  APIUtil
+  .votePostDown(id)
+  .then(data =>(dispatch(votePostsDown(data))))
+  .catch(err => (console.log(err)))
+)
+
+export const AsyncVoteComment = (id)=> dispatch =>(
+  APIUtil
+  .voteComment(id)
+  .then(data =>(dispatch(voteComments(data))))
+  .catch(err => (console.log(err)))
+)
+
+export const AsyncVoteCommentDown = (id)=> dispatch =>(
+  APIUtil
+  .voteCommentDown(id)
+  .then(data =>(dispatch(voteCommentsDown(data))))
   .catch(err => (console.log(err)))
 )
