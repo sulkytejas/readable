@@ -113,6 +113,7 @@ export function editComment(id,body){
     headers: header,
     body: JSON.stringify({
       body:body,
+      timestamp:dateFormat(now, "dddd, mmmm dS, yyyy, h:MM:ss TT"),
     })
 })
   .then(data => { return data.json()})

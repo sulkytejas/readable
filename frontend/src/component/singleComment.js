@@ -13,8 +13,11 @@ class SingleComment extends Component{
   componentDidMount(){
     const id = this.props.match.params.id
     this.props.itemAddComment(id)
-    // this.props.itemEditComment(47,'body')
+    if (!this.state.body) {
+      this.setState({ body: this.props.comments.body });
+   }
   }
+
 
   openCommentModal = ()=>{
    this.setState(()=>({openModalComment: true}));
@@ -26,7 +29,7 @@ class SingleComment extends Component{
 
   render(){
     const {comments} = this.props
-    const{title,body} = this.state
+    const{body} = this.state
     const id = this.props.match.params.id
     return(
       <div>
@@ -53,6 +56,7 @@ class SingleComment extends Component{
             <h2>Body(Description)</h2>
             <input
               className='form-body'
+              value={body}
               type='text'
               placeholder='Body'
               onChange = {(e)=> this.setState({body:e.target.value})}
@@ -65,7 +69,7 @@ class SingleComment extends Component{
             </button>
             <button
               className="close"
-              onClick={()=>this.props.itemEditComment(id,body)}>
+              onClick={()=>this.props.itemEditComment(id,{body})}>
               Submit
             </button>
           </form>
