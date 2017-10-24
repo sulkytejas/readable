@@ -52,6 +52,8 @@ class SinglePost extends Component{
       const {post,comments} = this.props
       const {body,author,categories,title} = this.state
       const id = this.props.match.params.id
+      comments.sort((a,b) => (b.voteScore - a.voteScore))
+      
       return(
         <div>
           <div className="singlePost">
@@ -73,6 +75,7 @@ class SinglePost extends Component{
                 <Link to={'/comments/'+comment.id}><div className="description">{comment.body}</div></Link>
                 <div className="authour">{comment.author}</div>
                 <div className="date">{comment.timestamp}</div>
+                <div className="score"> Score:{comment.voteScore}</div>
                 <div>
                   <button className="close" onClick={(id)=>this.props.itemDeleteComment(comment.id)}>
                    Delete

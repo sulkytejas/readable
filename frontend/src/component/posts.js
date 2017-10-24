@@ -14,6 +14,7 @@ class Posts extends Component{
               <div className="description">{post.body}</div>
               <div className="authour">{post.author}</div>
               <div className="date">{post.timestamp}</div>
+              <div className="score">Score: {post.voteScore}</div>
               <div><button className="close" onClick={(id)=>this.props.deletepost(post.id)}>Delete</button></div>
             </div>
 

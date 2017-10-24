@@ -8,6 +8,7 @@ function postState(state=InitialState,action){
   const {posts,deleted_posts} = action
   switch (action.type) {
     case ADD_ALL_POSTS:
+    console.log(action)
       return posts;
 
     case DELETE_POSTS:
@@ -46,7 +47,7 @@ function commentState(state=[],action){
   switch (action.type) {
 
     case FETCH_COMMENTS:
-     return comment.sort(function(a,b){ if (a.voteScore > b.voteScore) {return a} else {return b}});
+     return comment;
 
     case POST_COMMENTS:
      return state.concat(comment);

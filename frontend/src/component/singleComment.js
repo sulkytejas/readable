@@ -72,7 +72,7 @@ class SingleComment extends Component{
             </button>
             <button
               className="close"
-              onClick={()=>this.props.itemEditComment(id,{body})}>
+              onClick={()=>this.props.itemEditComment(id,body)}>
               Submit
             </button>
           </form>

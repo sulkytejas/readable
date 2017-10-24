@@ -47,7 +47,7 @@ class Category extends Component {
           <div className="categories" key={category.name}>
             <Link to={category.path}  className="title" ><h1>{category.name}</h1></Link>
             <Posts
-              posts={posts.filter((a)=> a.category === category.name)}
+              posts={posts.filter((a)=> a.category === category.name).sort((a,b)=>(b.voteScore-a.voteScore))}
               deletepost={(id)=>(this.props.itemDeletePost(id))} />
           </div>
           ))
