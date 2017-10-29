@@ -16,8 +16,8 @@ class App extends Component {
         <div className="navigation">
           <div className="logo">Readable</div>
         </div>
-       <Route exact path="/" component={Category}/>
-       <Route exact path="/:category" component={SingleCategory}/>
+       <Route exact path="/" component={Category} />
+       <Route exact path="/:category" component={SingleCategory} />
        <Route exact path="/posts/:id" component={SinglePost}/>
        <Route exact path="/comments/:id" component={SingleComment}/>
       </div>

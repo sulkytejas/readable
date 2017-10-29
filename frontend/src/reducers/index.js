@@ -55,6 +55,16 @@ function commentState(state=[],action){
     case DELETE_COMMENTS:
      return state.filter(a=> a.id !== comment.id);
 
+    default:
+      return state
+  }
+}
+
+function singleCommentState(state=[],action){
+  const {comment} = action
+
+  switch (action.type) {
+
     case GET_SINGLE_COMMENT:
      return comment;
 
@@ -74,4 +84,4 @@ function commentState(state=[],action){
 }
 
 
-export default combineReducers({postState,singlePostState,commentState})
+export default combineReducers({postState,singlePostState,commentState,singleCommentState})

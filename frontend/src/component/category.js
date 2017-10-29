@@ -37,6 +37,7 @@ class Category extends Component {
     return (
       <div className="Category">
         <div className="container">
+        
           <div className="navigation">
             {/* <div className="logo">Readable</div> */}
             <button onClick={()=>this.openFormModal()} className="add-post">

@@ -62,6 +62,7 @@ export function editPost(id,title,body){
     })
 })
   .then(data => { return data.json()})
+  .then(d=>console.log(d))
 }
 
 export function getComments(id){
@@ -112,8 +113,8 @@ export function editComment(id,body){
     method:'PUT',
     headers: header,
     body: JSON.stringify({
-      body:body,
       timestamp:dateFormat(now, "dddd, mmmm dS, yyyy, h:MM:ss TT"),
+      body:'body',
     })
 })
   .then(data => { return data.json()})

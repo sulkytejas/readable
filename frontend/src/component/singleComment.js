@@ -45,6 +45,7 @@ class SingleComment extends Component{
           <button className="close" onClick={()=>this.props.itemVoteComment(id)}>Like</button>
           <button className="close" onClick={()=>this.props.itemVoteCommentDown(id)}>Dislike</button>
           <button className="close" onClick={()=>this.openCommentModal()}>Edit</button>
+
         </div>
         {/* //modal to edit Comments */}
         <Modal
@@ -72,25 +73,24 @@ class SingleComment extends Component{
             </button>
             <button
               className="close"
-              onClick={()=>this.props.itemEditComment(id,body)}>
+              onClick={()=>this.props.itemEditComment('7','body')}>
               Submit
             </button>
           </form>
-
         </Modal>
       </div>
     )
   }
 }
 
-const mapStateToProps = ({ singlePostState,commentState }) =>
- ({ post: singlePostState, comments:commentState})
+const mapStateToProps = ({ singlePostState,singleCommentState }) =>
+ ({ post: singlePostState, comments:singleCommentState})
 
 const mapDispatchToProps = (dispatch) => {
   return {
     itemDeleteComment: (id) => dispatch(DeleteComment(id)),
     itemAddComment:(id) => dispatch(GetSingleComment(id)),
-    itemEditComment:(id,body) => dispatch(AsycEditComment(id,body)),
+    itemEditComment:(id,body) => dispatch(AsycEditComment(7,'body')),
     itemVoteComment:(id) =>dispatch(AsyncVoteComment(id)),
     itemVoteCommentDown:(id) =>dispatch(AsyncVoteCommentDown(id)),
   }

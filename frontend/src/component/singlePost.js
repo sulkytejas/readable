@@ -53,9 +53,10 @@ class SinglePost extends Component{
       const {body,author,categories,title} = this.state
       const id = this.props.match.params.id
       comments.sort((a,b) => (b.voteScore - a.voteScore))
-      
+
       return(
         <div>
+          <Link to={`/${post.category}`} className="close">Back</Link>
           <div className="singlePost">
             <h2>{post.title}</h2>
             <p className="author">By {post.author}</p>
