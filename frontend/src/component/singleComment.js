@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux'
 import {DeleteComment,GetSingleComment,AsycEditComment,AsyncVoteCommentDown,AsyncVoteComment} from '../actions/'
 import Modal from 'react-modal';
+import {Link} from 'react-router-dom'
 
 class SingleComment extends Component{
 
@@ -36,6 +37,7 @@ class SingleComment extends Component{
     const id = this.props.match.params.id
     return(
       <div>
+        <Link to={`/posts/${comments.parentId}`} className="close">Back</Link>
         <div className="singlePost">
           <h2>{comments.title}</h2>
           <p className="author">By {comments.author}</p>
@@ -73,7 +75,7 @@ class SingleComment extends Component{
             </button>
             <button
               className="close"
-              onClick={()=>this.props.itemEditComment('7','body')}>
+              onClick={()=>this.props.itemEditComment(id,body)}>
               Submit
             </button>
           </form>
@@ -90,7 +92,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     itemDeleteComment: (id) => dispatch(DeleteComment(id)),
     itemAddComment:(id) => dispatch(GetSingleComment(id)),
-    itemEditComment:(id,body) => dispatch(AsycEditComment(7,'body')),
+    itemEditComment:(id,body) => dispatch(AsycEditComment(id,body)),
     itemVoteComment:(id) =>dispatch(AsyncVoteComment(id)),
     itemVoteCommentDown:(id) =>dispatch(AsyncVoteCommentDown(id)),
   }

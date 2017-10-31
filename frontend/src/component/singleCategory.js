@@ -19,10 +19,11 @@ class SingleCategory extends Component{
     render(){
       const category = this.props.match.params.category
       const {posts} = this.props
+      posts.sort((a,b) => (b.voteScore - a.voteScore))
       return(
       <div>
         <div className="categories" key={category.name}>
-          <Link to='/'>Back</Link>
+          <Link to='/' className="close">Back</Link>
           <Posts
             posts={posts.filter((a)=> a.category === category)}
             deletepost={(id)=>(this.props.itemDeletePost(id))}/>

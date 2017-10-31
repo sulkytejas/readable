@@ -31,13 +31,15 @@ class Category extends Component {
   closeFormModal = ()=>{
    this.setState(()=>({openModal: false}));
   }
+
   render() {
     const {categories,title,body,category,author} = this.state
     const posts = this.props.posts
+    
     return (
       <div className="Category">
         <div className="container">
-        
+
           <div className="navigation">
             {/* <div className="logo">Readable</div> */}
             <button onClick={()=>this.openFormModal()} className="add-post">

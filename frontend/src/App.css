@@ -197,3 +197,13 @@ body{
   display: inline-block;
   padding-left: 20px;
 }
+
+.close{
+  margin: 20px 10px;
+  border: 1px #dadada solid;
+  background-color: black;
+  color:white;
+  padding: 10px 13px;
+  font-size: 15px;
+  border-radius: 22px;
+}
