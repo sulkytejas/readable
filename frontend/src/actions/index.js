@@ -176,8 +176,7 @@ export const AsycEditPost = (id,title,body)=> dispatch =>(
 export const AsycEditComment = (id,body)=> dispatch =>(
   APIUtil
   .editComment(id,body)
-  .then(data => console.log(data))
-  // .then(data =>(dispatch(editComment(data))))
+  .then(data =>(dispatch(editComment(data))))
   .catch(err => (console.log(err)))
 )
 
