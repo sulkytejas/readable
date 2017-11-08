@@ -8,7 +8,6 @@ function postState(state=InitialState,action){
   const {posts,deleted_posts} = action
   switch (action.type) {
     case ADD_ALL_POSTS:
-    console.log(action)
       return posts;
 
     case DELETE_POSTS:
